@@ -1,6 +1,23 @@
 import express from 'express'
+import cors from 'cors'
+
 const app = express()
+
 // const port = 3000
+
+
+// Allow all origins (Not recommended for production)
+app.use(cors());
+
+// OR better: allow specific origin (Netlify in your case)
+const corsOptions = {
+    origin: 'https://checkfront.netlify.app', // Replace with your Netlify domain
+    methods: 'GET,POST', // Specify allowed methods
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
 
 //get a list a 5 jokes
 app.get('/api/jokes', (req, res) => {
